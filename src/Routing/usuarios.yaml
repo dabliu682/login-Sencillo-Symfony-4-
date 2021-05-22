@@ -1,0 +1,11 @@
+login_route:
+  path: /login
+  defaults: {_controller: App\Controller\LoginController::loginAction}
+
+login_check:
+  path: /login_check
+  defaults: {_controller: App\Controller\LoginController::loginCheckAction}
+
+user_registration:
+  path: /register
+  defaults: {_controller: App\Controller\RegistrationController::registerAction}

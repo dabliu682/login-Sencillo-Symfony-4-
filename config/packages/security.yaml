@@ -1,0 +1,33 @@
+security:
+
+    encoders:
+        App\Entity\User:
+            algorithm: bcrypt
+    
+    providers:
+        our_db_provider:
+            entity:
+                class: App:User
+
+    firewalls:
+        main:
+            remember_me:
+                secret:   '%kernel.secret%'
+                lifetime: 604800 # 1 week in seconds
+                path:     login_route
+            anonymous: ~
+            form_login:
+                login_path: login_route
+                check_path: login_check
+                default_target_path: plataforma_index
+                failure_path: login_route
+            logout:
+                path: logout
+                target: login_route
+
+           
+
+    
+    access_control:
+        # - { path: ^/admin, roles: ROLE_ADMIN }
+        - { path: ^/plataforma_index, roles: ROLE_USER }

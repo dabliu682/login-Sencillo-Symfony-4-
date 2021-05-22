@@ -1,0 +1,3 @@
+plataforma_index:
+  path: /plataforma_index
+  defaults: {_controller: App\Controller\PlataformaController::index}

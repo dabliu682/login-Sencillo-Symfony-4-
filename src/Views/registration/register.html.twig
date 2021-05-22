@@ -1,0 +1,100 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello RegistrationController!{% endblock %}
+
+{% block body %}
+
+    <style>
+        .label{width: 150px}
+    </style>    
+    {{ form_start(form) }}
+        <div class="card" style="margin:50px auto; width:28rem;">
+            <div class="card-header">
+                <h2>Registro</h2>
+            </div>
+            <div class="card-body">
+
+                <div class="form-group row">
+                    <div class="col-12">
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                {{ form_label(form.username,form.username, {'label_attr' : {'class' : 'input-group-text label' }} ) }}
+                            </div>
+                            {{ form_widget(form.username, {'attr' : {'class' : 'form-control'}}) }}
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-12">
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                {{ form_label(form.email,form.email, {'label_attr' : {'class' : 'input-group-text label' }} ) }}
+                            </div>
+                            {{ form_widget(form.email, {'attr' : {'class' : 'form-control'}}) }}
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-12">
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                {{ form_label(form.password.first,form.password.first, {'label_attr' : {'class' : 'input-group-text label' }} ) }}
+                            </div>
+                            {{ form_widget(form.password.first, {'attr' : {'class' : 'form-control'}}) }}
+                            
+                           
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-12">
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                {{ form_label(form.password.second,form.password.second, {'label_attr' : {'class' : 'input-group-text label' }} ) }}
+                            </div>
+                            {{ form_widget(form.password.second, {'attr' : {'class' : 'form-control'}}) }}
+                            
+                        </div>
+                    </div>
+                </div>
+
+                {% for flash_message in app.session.flashbag.get('mensaje') %}
+                    <div class="alert alert-danger alert-dismissible fade show" style="max-width:100%; max-height:64px; padding:1px 4px" role="alert">
+                        {{ flash_message }}                        
+                    </div>
+                {% endfor %}
+
+                
+                {% set formErrors = form.vars.errors.form.getErrors(true) %}
+                                    
+                
+                {% if formErrors|length %}
+                    <ul class="col-12 alert alert-danger my-3" style="max-height:30px; padding:1px">
+                        {% for error in formErrors %}
+                            {{ error.message }}
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+
+                <div class=" col-12 d-flex justify-content-center mt-3">
+                    <button type="submit" class="btn btn-primary">Registrarse</button>
+                </div>
+                <div class="col-12 my-3">
+                        <div class="d-flex justify-content-center links">
+                            Ya tengo una cuenta <a href="{{ path('login_route') }}" class="ml-2">Iniciar sesión</a>
+                        </div>
+                        {# <div class="d-flex justify-content-center links">
+                            <a href="#">Forgot your password?</a>
+                        </div> #}
+                    </div>  
+            </div>
+        </div>
+
+     
+
+    
+{{ form_end(form) }}
+{% endblock %}

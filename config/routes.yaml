@@ -1,0 +1,13 @@
+#index:
+#    path: /
+#    controller: App\Controller\DefaultController::index
+
+usuarios:
+  resource: "../src/Routing/usuarios.yaml"
+
+plataforma:
+  resource: "../src/Routing/plataforma.yaml"
+
+logout:
+    path: /logout
+
