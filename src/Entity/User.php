@@ -39,6 +39,11 @@ class User implements AdvancedUserInterface, \Serializable
      */
     private $isActive;
 
+    /**
+     * @ORM\Column(type="json")
+     */
+    private $roles = [];
+
     public function __construct()
     {
         $this->isActive = true;
@@ -96,8 +101,6 @@ class User implements AdvancedUserInterface, \Serializable
 
     public function getSalt()
     {
-        // podrías necesitar un verdadero salt dependiendo del encoder
-        // ver la sección salt debajo
         return null;
     }
 
@@ -106,9 +109,18 @@ class User implements AdvancedUserInterface, \Serializable
         return $this->password;
     }
 
-    public function getRoles()
+    public function getRoles(): array
     {
-        return array('ROLE_USER');
+        $roles = $this->roles;  
+
+        return array_unique($roles);
+    }
+
+    public function setRoles(array $roles): self
+    {
+        $this->roles = $roles;
+
+        return $this;
     }
 
     public function eraseCredentials()

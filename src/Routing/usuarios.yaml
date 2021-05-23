@@ -6,6 +6,10 @@ login_check:
   path: /login_check
   defaults: {_controller: App\Controller\LoginController::loginCheckAction}
 
+usuario_registro:
+  path: /registro_usuario
+  defaults: {_controller: App\Controller\RegistrationController::registroUsuario}
+
 user_registration:
   path: /register
   defaults: {_controller: App\Controller\RegistrationController::registerAction}
